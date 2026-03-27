@@ -31,7 +31,7 @@ vectorstore = InMemoryVectorStore(embeddings)
 vectorstore.add_documents(texts)
 
 # 查询与检索
-question = "文中举了那些例子"
+question = "文中举了哪些例子"
 retrieved_docs = vectorstore.similarity_search(question, k=3)
 docs_content = "\n\n".join(doc.page_content for doc in retrieved_docs)
 
