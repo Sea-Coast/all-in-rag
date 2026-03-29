@@ -16,7 +16,10 @@ loader = TextLoader(markdown_path)
 docs = loader.load()
 
 # 文本分块
-text_splitter = RecursiveCharacterTextSplitter()
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = 500,
+    chunk_overlap = 100
+)
 texts = text_splitter.split_documents(docs)
 
 
@@ -56,4 +59,4 @@ llm = ChatOpenAI(
 
 # 调用LLM生成答案并输出
 answer = llm.invoke(prompt.format(question=question, context=docs_content))
-print(answer)
+print(answer.content)
