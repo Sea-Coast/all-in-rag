@@ -1,12 +1,17 @@
-from unstructured.partition.auto import partition
+# from unstructured.partition.auto import partition
+from unstructured.partition.pdf import partition_pdf
 
 # PDF文件路径
 pdf_path = "../../data/C2/pdf/rag.pdf"
 
 # 使用Unstructured加载并解析PDF文档
-elements = partition(
-    filename=pdf_path,
-    content_type="application/pdf"
+# elements = partition(
+#     filename=pdf_path,
+#     content_type="application/pdf"
+# )
+elements = partition_pdf(
+    filename = pdf_path,
+    strategy = "ocr_only"
 )
 
 # 打印解析结果
@@ -19,7 +24,7 @@ print(f"元素类型: {dict(types)}")
 
 # 显示所有元素
 print("\n所有元素:")
-for i, element in enumerate(elements, 1):
+for i, element in enumerate(elements, 1):      # enumerate(sequence -- 一个序列、迭代器或其他支持迭代对象,start -- 下标起始位置的值。)
     print(f"Element {i} ({element.category}):")
     print(element)
     print("=" * 60)
